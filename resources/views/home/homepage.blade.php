@@ -1,40 +1,63 @@
 @extends('layouts.menu')
 
+@section('style')
+    <style>
+        .card {
+            border: thin solid black;
+        }
+
+        .card .card-img {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 13em;
+        }
+
+        .card .card-body {
+            padding: 1em;
+        }
+
+        .card .card-body h3 {
+            margin: 0;
+        }
+    </style>
+
+@endsection
+
 @section('content-menu')
-<div class="row">
-  <div class="col-lg-3">
-    <h1 class="my-4">Menu Manager</h1>
-    <a type="submit" class="btn btn-primary" href="/addMenuForm">Add New Menu</a>
-  </div>
 
-  <div class="col-lg-9">
     <div class='row'>
-    @foreach($menu as $menu_list)
-        <div class='col-md-4'>
-          <div class="card mt-4">
-            <div class="card-img-top img-fluid" style="background-image:url('{{$menu_list->menu_image}}');background-repeat: no-repeat;background-size: cover;background-position: center;width: 100%;height: 250px;" alt=""></div>
-            <div class="card-body">
+        @foreach($menu as $menu_list)
 
-              <h3 class="card-title">{{$menu_list->menu_name}}</h3>
-              <div class='row'>
-              <div class='col-md-6'>
-                <h4 style="font-size: 90%;">Rp.{{$menu_list->menu_price}}</h4>
-              </div>
-              <a type="submit" class="btn btn-primary" href="/updateMenuForm/{{$menu_list->id}}">Update</a>
-              <a type="submit" class="btn btn-danger" href="/deleteMenu/{{$menu_list->id}}" onclick="return confirm('Do you want to delete this menu?')">Delete</a>
-              </div>
+            <div class='col-md-3'>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-img"
+                             style="background-image:url('{{$menu_list->menu_image}}');"></div>
+                    </div>
 
+                    <div class="card-body">
+                        <h3>{{$menu_list->menu_name}}</h3>
+                        <h4 style="font-size: 90%;">Rp.{{$menu_list->menu_price}}</h4>
+                        <p>{{$menu_list->menu_description}}</p>
+                        @if(Auth::user()->isAdmin())
+                            <p>From: {{$menu_list->cater_name}}</p>
+                        @endif
+                        <div class='container-fluid'>
+                            <a class="btn btn-primary btn-sm"
+                               href="/updateMenuForm/{{$menu_list->id}}">Update</a>
+                            <a class="btn btn-danger btn-sm" href="/deleteMenu/{{$menu_list->id}}"
+                               onclick="return confirm('Do you want to delete this menu?')">Delete</a>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-          </div>
-          </div>
-          
-          <!-- /.card -->
-        @endforeach
-          </div>
-    
 
-  </div>
-</div>
+            <!-- /.card -->
+        @endforeach
+    </div>
 
 
 @endsection

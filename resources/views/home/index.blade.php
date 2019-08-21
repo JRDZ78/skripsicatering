@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
-@section('content')
+@section('style')
+    <style>
+        .navbar {
+            margin-bottom: 0 !important;
+        }
+
+        .text-white {
+            color: white;
+        }
+    </style>
+@endsection
+
+@section('full-content')
   <header class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">

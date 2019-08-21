@@ -8,6 +8,6 @@ class CateringService extends Model
 {
     //
     protected $fillable = [
-    	'name','logo','phone','address'
+    	'name','logo','phone','address','banner'
     ];
 }

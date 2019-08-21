@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Laravel\Passport\HasApiTokens;
+use  Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        if($this->role->role_name == 'admin')
+        if($this->role->rolename == 'admin')
         {
             return true;
         }

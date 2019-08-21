@@ -22,6 +22,7 @@ class CreateMenu extends Migration
             $table->text('menu_image');
             $table->bigInteger('menu_type_id')->unsigned();
             $table->foreign('menu_type_id')->references('id')->on('menu_type');
+            $table->text('menu_description');
             $table->double('menu_price',15,2);
             $table->string('weekday');
         });
